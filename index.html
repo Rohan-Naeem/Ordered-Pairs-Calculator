@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordered Pairs Calculator — Find (x, y) From Any Equation</title>
+  <meta name="description" content="Enter an equation or function and instantly get a table of ordered pairs (x, y). Free, fast, and works right in your browser — no sign-up needed.">
+  <link rel="canonical" href="https://www.orderedpairscalculator.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ordered Pairs Calculator — Find (x, y) From Any Equation">
+  <meta property="og:description" content="Enter an equation or function and instantly get a table of ordered pairs (x, y). Free, fast, and works right in your browser.">
+  <meta property="og:url" content="https://www.orderedpairscalculator.com/">
+  <meta property="og:site_name" content="Ordered Pairs Calculator">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ordered Pairs Calculator — Find (x, y) From Any Equation">
+  <meta name="twitter:description" content="Enter an equation or function and instantly get a table of ordered pairs (x, y).">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" href="assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an ordered pair?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An ordered pair is a set of two values, written as (x, y), that gives a point's position on a coordinate plane. The first number is the x-value and the second is the y-value, and the order matters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you find ordered pairs from an equation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pick a value for x, substitute it into the equation, and solve for y. The resulting x and y values together form the ordered pair (x, y). Repeat with different x-values to build a table of points."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does (x, y) mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "(x, y) is the standard notation for a point's location: x tells you how far to move horizontally from the origin, and y tells you how far to move vertically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you calculate y from x?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Substitute your chosen x-value everywhere x appears in the equation, then simplify using order of operations to get a single number for y."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can ordered pairs be negative?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Either or both values in an ordered pair can be negative, which places the point in a different quadrant of the coordinate plane."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between an ordered pair and a coordinate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They describe the same thing. \"Coordinates\" usually refers to the individual x and y values, while \"ordered pair\" refers to those two values written together as (x, y)."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#calculator">Skip to calculator</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>Ordered Pairs<em>Calculator</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span></span><span></span><span></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <a href="#calculator">Calculator</a>
+        <a href="#what-is">Guide</a>
+        <a href="#faq">FAQ</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <h1>Ordered Pairs Calculator</h1>
+          <p>Enter an equation, choose your x-values, and get a clean table of ordered pairs — with each point written out as (x, y) and ready to plot.</p>
+        </div>
+      </div>
+      <div class="hero-grid" aria-hidden="true"></div>
+    </section>
+
+    <section class="calculator-section" id="calculator">
+      <div class="wrap">
+        <div class="calc-card">
+
+          <div class="calc-field">
+            <label for="equationInput">Equation or function</label>
+            <input type="text" id="equationInput" name="equationInput" placeholder="e.g. y = 2x + 3" autocomplete="off" spellcheck="false">
+            <p class="field-hint">Use <strong>x</strong> as your variable. Supports + − × ÷ ^, parentheses, and sqrt, abs, sin, cos, tan, ln.</p>
+          </div>
+
+          <fieldset class="calc-field">
+            <legend>x-values</legend>
+            <div class="mode-toggle" role="radiogroup" aria-label="x-value input mode">
+              <label class="mode-option">
+                <input type="radio" name="xMode" value="range" checked>
+                <span>Range</span>
+              </label>
+              <label class="mode-option">
+                <input type="radio" name="xMode" value="list">
+                <span>List</span>
+              </label>
+            </div>
+
+            <div class="mode-panel" id="rangePanel">
+              <div class="range-grid">
+                <div>
+                  <label for="xStart">Start</label>
+                  <input type="number" id="xStart" value="-5" step="any">
+                </div>
+                <div>
+                  <label for="xEnd">End</label>
+                  <input type="number" id="xEnd" value="5" step="any">
+                </div>
+                <div>
+                  <label for="xStep">Step</label>
+                  <input type="number" id="xStep" value="1" step="any" min="0.0001">
+                </div>
+              </div>
+            </div>
+
+            <div class="mode-panel" id="listPanel" hidden>
+              <label for="xList">x-values, separated by commas</label>
+              <input type="text" id="xList" placeholder="e.g. -2, 0, 1, 3, 4.5" autocomplete="off">
+            </div>
+          </fieldset>
+
+          <div class="calc-actions">
+            <button type="button" id="calculateBtn" class="btn btn-primary">Calculate</button>
+            <button type="button" id="resetBtn" class="btn btn-secondary">Reset</button>
+          </div>
+
+          <div id="errorMessage" class="error-message" role="alert" hidden></div>
+
+          <div id="resultsArea" class="results-area" hidden>
+            <h2 class="results-heading">Results</h2>
+            <p id="resultsExplain" class="results-explain"></p>
+            <div class="table-scroll">
+              <table id="resultsTable">
+                <thead>
+                  <tr>
+                    <th scope="col">x</th>
+                    <th scope="col">y</th>
+                    <th scope="col">Ordered pair</th>
+                  </tr>
+                </thead>
+                <tbody id="resultsBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="what-is">
+      <div class="wrap wrap-narrow">
+        <h2>What are ordered pairs?</h2>
+        <p>An ordered pair is two numbers written together in a specific order, like <strong>(3, 7)</strong>, that describe the location of a single point on a coordinate plane. It's called "ordered" because the sequence matters — (3, 7) and (7, 3) are different points.</p>
+        <p>The first number in the pair is the <strong>x-value</strong>, which tells you how far to move left or right from the center of the graph (the origin). The second number is the <strong>y-value</strong>, which tells you how far to move up or down. Together, x and y pin down exactly one location.</p>
+        <p>Ordered pairs and coordinates describe the same idea. When people talk about "the coordinates of a point," they usually mean the same x and y values written as an ordered pair.</p>
+      </div>
+    </section>
+
+    <section class="content-section content-alt">
+      <div class="wrap wrap-narrow">
+        <h2>How to use the calculator</h2>
+        <ol class="step-list">
+          <li>
+            <span class="step-num">1</span>
+            <div>
+              <h3>Type in your equation</h3>
+              <p>Enter it using x as the variable, such as <code>y = 2x + 3</code> or <code>x^2 - 4</code>.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div>
+              <h3>Choose your x-values</h3>
+              <p>Pick a range with a start, end, and step, or switch to List mode and type specific x-values separated by commas.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div>
+              <h3>Select Calculate</h3>
+              <p>The calculator substitutes each x-value into your equation and solves for y.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">4</span>
+            <div>
+              <h3>Read your ordered pairs</h3>
+              <p>Each row of the results table shows an x-value, its matching y-value, and the ordered pair (x, y) — ready to plot or write down.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="content-section" id="example">
+      <div class="wrap wrap-narrow">
+        <h2>Example</h2>
+        <p>Take the equation <strong>y = 2x + 1</strong> with x-values of -1, 0, 1, and 2.</p>
+        <div class="table-scroll">
+          <table class="example-table">
+            <thead>
+              <tr><th scope="col">x</th><th scope="col">Substitution</th><th scope="col">y</th><th scope="col">Ordered pair</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>-1</td><td>2(-1) + 1</td><td>-1</td><td>(-1, -1)</td></tr>
+              <tr><td>0</td><td>2(0) + 1</td><td>1</td><td>(0, 1)</td></tr>
+              <tr><td>1</td><td>2(1) + 1</td><td>3</td><td>(1, 3)</td></tr>
+              <tr><td>2</td><td>2(2) + 1</td><td>5</td><td>(2, 5)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Plotting these four ordered pairs on a coordinate plane and connecting them would trace out the straight line described by the equation.</p>
+      </div>
+    </section>
+
+    <section class="content-section content-alt" id="how-to-calculate">
+      <div class="wrap wrap-narrow">
+        <h2>How to calculate ordered pairs</h2>
+        <p>Finding an ordered pair from any equation follows the same general process, whether the equation is a straight line or a curve:</p>
+        <ol class="plain-list">
+          <li>Choose a value for x.</li>
+          <li>Substitute that value everywhere x appears in the equation.</li>
+          <li>Simplify using order of operations to solve for y.</li>
+          <li>Write the result as the ordered pair (x, y).</li>
+          <li>Repeat with more x-values to build out a full table of points.</li>
+        </ol>
+        <p>This works the same way for linear equations like <code>y = mx + b</code> and for curves like <code>y = x^2 - 4</code> — only the substitution and simplification steps change.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="faq">
+      <div class="wrap wrap-narrow">
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-item">
+          <h3>What is an ordered pair?</h3>
+          <p>An ordered pair is a set of two values, written as (x, y), that gives a point's position on a coordinate plane. The first number is the x-value and the second is the y-value, and the order matters.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How do you find ordered pairs from an equation?</h3>
+          <p>Pick a value for x, substitute it into the equation, and solve for y. The resulting x and y values together form the ordered pair (x, y). Repeat with different x-values to build a table of points.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What does (x, y) mean?</h3>
+          <p>(x, y) is the standard notation for a point's location: x tells you how far to move horizontally from the origin, and y tells you how far to move vertically.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How do you calculate y from x?</h3>
+          <p>Substitute your chosen x-value everywhere x appears in the equation, then simplify using order of operations to get a single number for y.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can ordered pairs be negative?</h3>
+          <p>Yes. Either or both values in an ordered pair can be negative, which places the point in a different quadrant of the coordinate plane.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What is the difference between an ordered pair and a coordinate?</h3>
+          <p>They describe the same thing. "Coordinates" usually refers to the individual x and y values, while "ordered pair" refers to those two values written together as (x, y).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section content-alt" id="related-tools">
+      <div class="wrap wrap-narrow">
+        <h2>Related tools</h2>
+        <ul class="related-list">
+          <li><a href="#">Coordinate Calculator</a></li>
+          <li><a href="#">Slope Calculator</a></li>
+          <li><a href="#">Distance Calculator</a></li>
+          <li><a href="#">Midpoint Calculator</a></li>
+          <li><a href="#">Linear Equation Calculator</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a href="index.html" class="brand brand-footer">
+        <img src="assets/logo.svg" alt="" width="24" height="24">
+        <span>Ordered Pairs Calculator</span>
+      </a>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </nav>
+      <p class="footer-copy">&copy; <span id="year"></span> Ordered Pairs Calculator. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
