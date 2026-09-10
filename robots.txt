@@ -1,4 +1,3 @@
 User-agent: *
-Allow: /
 
-Sitemap: https://www.orderedpairscalculator.com/sitemap.xml
+Sitemap: https://ordered-pairs-calculator.vercel.app/sitemap.xml
